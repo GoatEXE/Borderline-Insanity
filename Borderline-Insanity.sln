@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borders", "Borders.csproj", "{B0C5EF9B-64BE-4FC9-9751-B8642E373CD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borderline Insanity", "Borderline-Insanity.csproj", "{B0C5EF9B-64BE-4FC9-9751-B8642E373CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
