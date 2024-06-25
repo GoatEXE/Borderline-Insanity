@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2o70ehfx1gy0"]
+[gd_scene load_steps=3 format=3 uid="uid://ckfumt0gxff4i"]
 
-[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_2j8x1"]
-[ext_resource type="PackedScene" uid="uid://btpy0dannl6ek" path="res://Scenes/Player.tscn" id="1_tx8b3"]
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_44ao0"]
+[ext_resource type="PackedScene" uid="uid://p7uaip3mj1o" path="res://Scenes/Player.tscn" id="2_esanr"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_2j8x1")
+script = ExtResource("1_44ao0")
 
-[node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(200, 200)
+[node name="Player" parent="." instance=ExtResource("2_esanr")]
 
-[node name="Player" parent="." instance=ExtResource("1_tx8b3")]
+[node name="ReduceScreen" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="ReduceScreen" to="." method="OnReduceScreenTimeout"]

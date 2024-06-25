@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Borders"
-run/main_scene="res://Scenes/Player.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [dotnet]
 

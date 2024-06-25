@@ -1,44 +1,51 @@
 using Godot;
-using System;
 
 public partial class Player : Area2D
 {
-	
 	[Export]
 	public int Speed { get; set; } = 400;
-	public Vector2 ScreenSize;
-	
+	[Export]
+	public int HalfSpriteSize { get; set; } = 33;
+	private Vector2 _screenSize;
 
 	public override void _Ready()
 	{
-		ScreenSize = GetViewportRect().Size;
-		// Hide();
+		Hide();
 	}
 
-
-public override void _Process(double delta)
-{
-	var velocity = Vector2.Zero; // The player's movement vector.
-
-	if (Input.IsActionPressed("move_right"))
+	public override void _Process(double delta)
 	{
-		velocity.X += 1;
+		// Update current screen size
+		Vector2 _screenSize = GetViewportRect().Size;
+
+		// Movement event handler
+		var velocity = new Vector2(
+			x: Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
+			y: Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up")
+		);
+		
+		// Account for diagnal move speed if moving
+		if (velocity != Vector2.Zero)
+		{
+			velocity = velocity.Normalized() * Speed;
+		}
+
+		// Update position according to velocity
+		// 33 is 1/2 sprite width + 1 px
+		Position += velocity * (float)delta;
+		Position = new Vector2(
+			x: Mathf.Clamp(Position.X, HalfSpriteSize, _screenSize.X - HalfSpriteSize),
+			y: Mathf.Clamp(Position.Y, HalfSpriteSize, _screenSize.Y - HalfSpriteSize )
+		);
+
 	}
 
-	if (Input.IsActionPressed("move_left"))
-	{
-		velocity.X -= 1;
-	}
 
-	if (Input.IsActionPressed("move_down"))
+	// Create player in starting position and enable collision
+	public void Start(Vector2 position)
 	{
-		velocity.Y += 1;
+		Position = position;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
-
-	if (Input.IsActionPressed("move_up"))
-	{
-		velocity.Y -= 1;
-	}
-	}
-	
 }

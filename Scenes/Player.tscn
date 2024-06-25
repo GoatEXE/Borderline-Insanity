@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://btpy0dannl6ek"]
+[gd_scene load_steps=4 format=3 uid="uid://p7uaip3mj1o"]
 
 [ext_resource type="Texture2D" uid="uid://v2a8f6mvnjbr" path="res://icon.svg" id="1_0i2bi"]
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_p7lth"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ko2aa"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0fwx"]
+size = Vector2(63, 62)
 
 [node name="Player" type="Area2D"]
+position = Vector2(362, 198)
 script = ExtResource("1_p7lth")
 metadata/_edit_group_ = true
 
@@ -15,4 +16,5 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0i2bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ko2aa")
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_h0fwx")
