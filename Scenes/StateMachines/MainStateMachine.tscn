@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7rhw3yi5f5as"]
+
+[ext_resource type="Script" path="res://Scripts/States/StateMachine.cs" id="1_x2fll"]
+[ext_resource type="Script" path="res://Scripts/States/Main/Idle.cs" id="2_bi6kr"]
+[ext_resource type="Script" path="res://Scripts/States/Main/Shrink.cs" id="3_my7bn"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_x2fll")
+InitialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_bi6kr")
+
+[node name="Shrink" type="Node" parent="."]
+script = ExtResource("3_my7bn")

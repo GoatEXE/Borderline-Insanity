@@ -2,9 +2,7 @@ using Godot;
 
 public partial class Player : Area2D
 {
-	[Export]
-	public int Speed { get; set; } = 400;
-	[Export]
+	[Export] public int Speed { get; set; } = 400;
 	public int HalfSpriteSize { get; set; } = 33;
 	private Vector2 _screenSize;
 
@@ -28,7 +26,7 @@ public partial class Player : Area2D
 		if (velocity != Vector2.Zero)
 		{
 			velocity = velocity.Normalized() * Speed;
-		}
+		}		
 
 		// Update position according to velocity
 		// 33 is 1/2 sprite width + 1 px
