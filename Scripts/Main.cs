@@ -6,6 +6,9 @@ public partial class Main : Node2D
 
 	[Export] public int StartingWindowSize { get; set; } = 400;
 	[Export] public int MinimumWindowSize { get; set; } = 200;
+	public Vector2 ScreenSize { get; set; }
+
+
 
 	public override void _Ready()
 	{
@@ -32,6 +35,12 @@ public partial class Main : Node2D
 
 		// Create show player at starting position
 		player.Start(startPoint);
+	}
+
+	public override void _Process(double delta)
+	{
+		// Update current screen size
+		ScreenSize = GetViewportRect().Size;
 	}
 
 	private void ExpandLefSide()
