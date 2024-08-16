@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://ci67ys6rfv2yy"]
 
-[ext_resource type="Script" path="res://Scripts/States/StateMachine.cs" id="1_uqtcg"]
-[ext_resource type="Script" path="res://Scripts/States/Player/PlayerIdle.cs" id="2_onaoh"]
-[ext_resource type="Script" path="res://Scripts/States/Player/PlayerMove.cs" id="3_jlolr"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="1_xmkbi"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerIdle.cs" id="2_b46sd"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerMove.cs" id="3_yqak3"]
 
 [node name="PlayerStateMachine" type="Node"]
-script = ExtResource("1_uqtcg")
+script = ExtResource("1_xmkbi")
 InitialState = NodePath("PlayerIdle")
 
 [node name="PlayerIdle" type="Node" parent="."]
-script = ExtResource("2_onaoh")
+script = ExtResource("2_b46sd")
 
 [node name="PlayerMove" type="Node" parent="."]
-script = ExtResource("3_jlolr")
+script = ExtResource("3_yqak3")

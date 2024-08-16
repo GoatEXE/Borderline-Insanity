@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://p7uaip3mj1o"]
 
 [ext_resource type="Texture2D" uid="uid://v2a8f6mvnjbr" path="res://icon.svg" id="1_0i2bi"]
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_p7lth"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_xrdww"]
 [ext_resource type="PackedScene" uid="uid://ci67ys6rfv2yy" path="res://Scenes/StateMachines/PlayerStateMachine.tscn" id="2_yalo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0fwx"]
@@ -9,7 +9,7 @@ size = Vector2(63, 62)
 
 [node name="Player" type="Area2D"]
 position = Vector2(362, 198)
-script = ExtResource("1_p7lth")
+script = ExtResource("1_xrdww")
 metadata/_edit_group_ = true
 
 [node name="PlayerStateMachine" parent="." instance=ExtResource("2_yalo5")]

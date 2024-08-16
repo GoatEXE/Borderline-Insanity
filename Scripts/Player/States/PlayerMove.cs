@@ -9,7 +9,6 @@ public partial class PlayerMove : State
 		Player = GetParent().GetParent<Player>();
 	}
 	
-
 	public override void Enter()
 	{
 	 GD.Print("Entering Player Move.");
