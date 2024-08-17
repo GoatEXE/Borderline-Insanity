@@ -8,6 +8,9 @@ public partial class PlayerBullet : Area2D
 
 	public override void _Ready()
 	{
+		// Position can be adjusted during window shrink
+		AddToGroup("PlayableArea");
+
 		// Where's the mouse at?
 		Vector2 targetPosition = GetGlobalMousePosition();
 

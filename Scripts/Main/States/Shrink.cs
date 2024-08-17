@@ -18,29 +18,45 @@ public partial class Shrink : State
 	
 	public override void Enter()
 	{
+		ShrinkTimer.WaitTime = Main.ShrinkRate;
 		ShrinkTimer.Start();
 	}
 
 	private void OnReduceScreenTimeout()
 	{
-		// Get the current window size and position
-		Vector2I currentSize = DisplayServer.WindowGetSize();
-		Vector2I currentPosition = DisplayServer.WindowGetPosition();
+	Vector2I currentSize = (Vector2I)Main.WindowSize;
+	Vector2I currentPosition = Main.WindowPosition;
 
-		// TODO: Make these comparisons separately
-		if (currentSize.X != Main.MinimumWindowSize || currentSize.Y != Main.MinimumWindowSize){
-			// Calculate the new size with decreased width and height
-			int newWidth = Mathf.Max(currentSize.X - 2, Main.MinimumWindowSize); // Decrease width by 2 pixels
-			int newHeight = Mathf.Max(currentSize.Y - 2, Main.MinimumWindowSize); // Decrease height by 2 pixels
+		if (currentSize.X != Main.MinimumWindowSize || currentSize.Y != Main.MinimumWindowSize)
+		{
+			var newSize = new Vector2I(
+				x: Mathf.Max(currentSize.X - 2, Main.MinimumWindowSize),
+				y: Mathf.Max(currentSize.Y - 2, Main.MinimumWindowSize)
+			);
 
-			// Calculate the new position to maintain the centered effect
-			int newPosX = currentPosition.X + 1; // Move window slightly to the right
-			int newPosY = currentPosition.Y + 1; // Move window slightly down
+			var newPosition = new Vector2I(
+				x: currentPosition.X + 1,
+				y: currentPosition.Y + 1
+			);
 
-			// TODO: Move player to compensate for this
-			// Set the new window position and size
-			DisplayServer.WindowSetPosition(new Vector2I(newPosX, newPosY));
-			DisplayServer.WindowSetSize(new Vector2I(newWidth, newHeight));
+			// Adjust nodes to account for new position
+			Vector2I offset = newPosition - currentPosition;            
+			RepositionObjects(offset);
+
+			// Set new window size and position
+			DisplayServer.WindowSetPosition(newPosition);
+			DisplayServer.WindowSetSize(newSize);
+		}
+	}
+
+	private void RepositionObjects(Vector2I offset)
+	{
+		foreach (var obj in GetTree().GetNodesInGroup("PlayableArea"))
+		{
+			if (obj is Node2D node2D)
+			{
+				node2D.Position -= (Vector2)offset;
+			}
 		}
 	}
 }

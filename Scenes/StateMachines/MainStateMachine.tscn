@@ -6,7 +6,7 @@
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_kdusm")
-InitialState = NodePath("Idle")
+InitialState = NodePath("Shrink")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("2_hsjkn")

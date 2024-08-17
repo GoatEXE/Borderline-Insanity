@@ -10,6 +10,7 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		Hide();
+		AddToGroup("PlayableArea");
 		MainScreen = GetParent<Main>();
 	}
 
