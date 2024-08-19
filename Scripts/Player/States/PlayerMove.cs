@@ -39,12 +39,6 @@ public partial class PlayerMove : State
 		}
 
 		// Update position according to velocity
-		// 33 is 1/2 sprite width + 1 px
 		Player.Position += velocity * (float)delta;
-		Player.Position = new Vector2(
-			x: Mathf.Clamp(Player.Position.X, Player.HalfSpriteSize, Player.MainScreen.WindowSize.X - Player.HalfSpriteSize),
-			y: Mathf.Clamp(Player.Position.Y, Player.HalfSpriteSize, Player.MainScreen.WindowSize.Y - Player.HalfSpriteSize )
-		);
-
 	}
 }

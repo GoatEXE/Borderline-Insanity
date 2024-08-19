@@ -4,6 +4,7 @@ public partial class Shrink : State
 {
 	// Nodes
 	protected Main Main { get; set; }
+	protected Player Player { get; private set; }
 	protected Timer ShrinkTimer { get; set; }
 
 	public override void _Ready()
@@ -11,6 +12,7 @@ public partial class Shrink : State
 		// Nodes
 		Main = GetParent().GetParent<Main>();
 		ShrinkTimer = Main.GetNode<Timer>("ShrinkTimer");
+		Player = Main.GetNode<Player>("Player");
 
 		// Signals
 		ShrinkTimer.Connect("timeout", new Callable(this, "OnReduceScreenTimeout"));
@@ -22,10 +24,16 @@ public partial class Shrink : State
 		ShrinkTimer.Start();
 	}
 
+	public override void Update(double delta)
+	{
+		// Clamp player to playable area
+		ClampPlayerToPlayableArea();
+	}
+	
 	private void OnReduceScreenTimeout()
 	{
-	Vector2I currentSize = (Vector2I)Main.WindowSize;
-	Vector2I currentPosition = Main.WindowPosition;
+		Vector2I currentSize = (Vector2I)Main.WindowSize;
+		Vector2I currentPosition = Main.WindowPosition;
 
 		if (currentSize.X != Main.MinimumWindowSize || currentSize.Y != Main.MinimumWindowSize)
 		{
@@ -58,5 +66,13 @@ public partial class Shrink : State
 				node2D.Position -= (Vector2)offset;
 			}
 		}
+	}
+
+	public void ClampPlayerToPlayableArea()
+	{
+		Player.Position = new Vector2(
+			x: Mathf.Clamp(Player.Position.X, Player.HalfSpriteSize, Player.MainScreen.WindowSize.X - Player.HalfSpriteSize),
+			y: Mathf.Clamp(Player.Position.Y, Player.HalfSpriteSize, Player.MainScreen.WindowSize.Y - Player.HalfSpriteSize )
+		);
 	}
 }

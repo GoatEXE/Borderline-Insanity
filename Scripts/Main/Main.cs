@@ -9,8 +9,6 @@ public partial class Main : Node2D
 	public Vector2I WindowPosition { get; set; }
 	public Vector2 DisplaySize { get; set; }
 
-
-
 	public override void _Ready()
 {
 	Player player = GetNode<Player>("Player");
